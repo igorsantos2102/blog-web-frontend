@@ -1,0 +1,57 @@
+<!-- src/app/components/dashboard/dashboard.component.html -->
+<mat-card class="center-card mat-elevation-z12">
+    <mat-card-content>
+        <!-- dashboard.component.html -->
+
+        <!-- Statistics Section -->
+        <div class="stats-container">
+            <!-- Total Posts Card -->
+            <mat-card class="stat-card">
+                <mat-card-header>
+                    <div mat-card-avatar class="stat-icon bg-primary">
+                        <mat-icon>article</mat-icon>
+                    </div>
+                    <mat-card-title>Total de Postagens</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <h1 class="stat-number">{{ totalPosts }}</h1>
+                </mat-card-content>
+            </mat-card>
+
+            <!-- Total Tags Card -->
+            <mat-card class="stat-card">
+                <mat-card-header>
+                    <div mat-card-avatar class="stat-icon bg-accent">
+                        <mat-icon>label</mat-icon>
+                    </div>
+                    <mat-card-title>Total de Etiquetas</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <h1 class="stat-number">{{ tagStats.length }}</h1>
+                </mat-card-content>
+            </mat-card>
+        </div>
+
+        <!-- Popular Tags Section -->
+        <h3>Etiquetas em alta</h3>
+        <div style="display: block; max-width: 700px; margin: auto;">
+            <canvas
+                baseChart
+                [data]="barChartData"
+                [options]="barChartOptions"
+                [type]="barChartType">
+            </canvas>
+        </div>
+
+        <!-- Tags List -->
+        <div class="tag-grid">
+            <mat-card class="tag-card" *ngFor="let ts of tagStats">
+                <mat-card-header>
+                    <mat-card-title>{{ ts.tag }}-</mat-card-title>
+                    <div class="tag-count">{{ ts.count }}</div>
+                </mat-card-header>
+            </mat-card>
+        </div>
+
+    </mat-card-content>
+</mat-card>

@@ -1,0 +1,30 @@
+<mat-card class="center-card mat-elevation-z12">
+  <mat-card-content>
+    <div>
+      <form [formGroup]="loginForm" class="post-form" autocomplete="off">
+        <!-- E-mail -->
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>E-mail</mat-label>
+          <input matInput type="email" formControlName="email" placeholder="Digite seu e-mail" required>
+        </mat-form-field>
+
+        <!-- Senha -->
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Senha</mat-label>
+          <input matInput type="password" formControlName="password" placeholder="Digite sua senha" required>
+        </mat-form-field>
+
+        <!-- Botão de Login -->
+        <button
+          mat-raised-button
+          color="primary"
+          style="float: right;"
+          [disabled]="loginForm.invalid"
+          (click)="login()"
+          aria-label="Fazer login">
+          Login
+        </button>
+      </form>
+    </div>
+  </mat-card-content>
+</mat-card>

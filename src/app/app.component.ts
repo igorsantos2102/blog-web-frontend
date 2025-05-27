@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,17 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'blogWeb';
+
+  constructor(private router: Router) {}
+
+  
+  get isLogged(): boolean {
+    return localStorage.getItem('JWT') !== null;
+  }
+
+  logout(): void {
+    localStorage.removeItem('JWT');
+    this.router.navigate(['/login']);
+  }
+
 }

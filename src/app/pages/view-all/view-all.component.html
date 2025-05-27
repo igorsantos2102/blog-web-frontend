@@ -1,0 +1,54 @@
+<div class="card-container" *ngFor="let item of allPosts">
+    <mat-card>
+        <mat-card-header>
+            <div mat-card-avatar class="example-header-image"></div>
+            <mat-card-title>{{ item.name }}</mat-card-title>
+            <mat-card-subtitle>
+                Publicado em: {{ item.date | date: 'medium' }}
+            </mat-card-subtitle>
+        </mat-card-header>
+
+        <mat-grid-list cols="5">
+            <mat-grid-tile [colspan]="2" [rowspan]="1">
+                <img mat-card-image [src]="item.img" class="post-img" alt="Imagem de {{ item.name }}" />
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="3" [rowspan]="1">
+                <mat-card-content>
+                    {{ item.content.length > 600 ? item.content.substr(0,600) + '...' : item.content }}
+                </mat-card-content>
+            </mat-grid-tile>
+        </mat-grid-list>
+
+        <hr>
+        <mat-card-actions>
+            <button mat-raised-button color="primary">{{item.likeCount}} <mat-icon>favorite</mat-icon></button>
+
+            <button mat-raised-button color="primary" style="margin-left: 5px;">
+                {{item.viewCount}} <mat-icon>remove_red_eye</mat-icon>
+            </button>
+
+            <button mat-raised-button color="primary" style="margin-left: 5px;" routerLink="/view-post/{{ item.id }}">
+                Ler Mais
+            </button>
+
+            <button
+                mat-icon-button
+                color="accent"
+                *ngIf="currentUserEmail === item.postedBy"
+                [routerLink]="['/edit-post', item.id]"
+                matTooltip="Editar postagem">
+                <mat-icon>edit</mat-icon>
+            </button>
+
+            <button
+                mat-icon-button
+                color="warn"
+                *ngIf="currentUserEmail === item.postedBy"
+                (click)="onDelete(item.id)"
+                matTooltip="Excluir postagem">
+                <mat-icon>delete</mat-icon>
+            </button>
+
+        </mat-card-actions>
+    </mat-card>
+</div>

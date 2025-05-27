@@ -1,0 +1,19 @@
+.tag-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.tag-card {
+  text-align: center;
+  padding: 0.5rem;
+}
+
+.tag-count {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #3f51b5;  /* use a cor do seu tema */
+  margin-top: 0.25rem;
+  
+}

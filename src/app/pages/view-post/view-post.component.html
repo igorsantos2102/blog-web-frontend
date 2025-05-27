@@ -1,0 +1,85 @@
+<div *ngIf="postData" class="card-container">
+    <mat-card>
+        <mat-card-header>
+            <div mat-card-avatar class="example-header-image"></div>
+            <mat-card-title>{{ postData.name }}</mat-card-title>
+            <mat-card-subtitle>
+                Publicado em: {{ postData.date | date: 'medium' }}
+            </mat-card-subtitle>
+        </mat-card-header>
+
+        <img mat-card-image [src]="postData.img" height="300px" class="img" alt="Imagem da Postagem" />
+
+        <mat-card-content>
+            {{ postData.content }}
+        </mat-card-content>
+
+        <br/>
+
+        <mat-chip-set>
+            <mat-chip *ngFor="let tag of postData.tags">{{ tag }}</mat-chip>
+        </mat-chip-set>
+
+        <mat-card-actions>
+            <button mat-raised-button color="primary" (click)="likePost()" [disabled]="likeInProgress">
+                {{ postData.likeCount }}
+                <mat-icon>favorite</mat-icon>
+            </button>
+
+            <button mat-raised-button color="primary" style="margin-left: 5px;">
+                {{ postData.viewCount }}
+                <mat-icon>remove_red_eye</mat-icon>
+            </button>
+
+             
+        </mat-card-actions>
+
+
+    </mat-card>
+
+   
+
+<mat-card class="comment-card">
+    <mat-card-content>
+        <h4>Publicar um comentário</h4>
+        <form [formGroup]="commentForm" class="post-form" autocomplete="off">
+            <!-- Campo do comentário -->
+            <mat-form-field appearance="fill">
+                <mat-label>Comentário</mat-label>
+                <textarea
+                    matInput
+                    formControlName="content"
+                    rows="4"
+                    placeholder="Escreva seu comentário"
+                    required
+                ></textarea>
+            </mat-form-field>
+
+            <!-- Botão de envio -->
+            <button
+                mat-raised-button
+                color="primary"
+                style="float: right;"
+                (click)="publishComment()"
+                [disabled]="!commentForm.valid">
+                Enviar comentário
+            </button>
+        </form>
+    </mat-card-content>
+</mat-card>
+
+    <div style="margin-top: 10px;">
+        <h4>Comentários</h4>
+        <mat-card style="margin-top: 10px;" *ngFor="let comment of comments" class="comment-card">
+            <mat-card-header>
+                <div mat-card-avatar class="example-header-image"></div>
+                <mat-card-subtitle>{{ comment.createdAt | date: 'medium' }}</mat-card-subtitle>
+            </mat-card-header>
+
+            <mat-card-content>
+                {{ comment.content }}
+            </mat-card-content>
+        </mat-card>
+    </div>
+
+</div>

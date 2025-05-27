@@ -1,0 +1,55 @@
+<mat-card class="center-card mat-elevation-z12">
+    <mat-card-content>
+        <div>
+            <form [formGroup]="postForm" class="post-form" autocomplete="off">
+                <!-- Nome do post -->
+                <mat-form-field appearance="fill">
+                    <mat-label>Título do Post</mat-label>
+                    <input matInput formControlName="name" placeholder="Digite o título do post" required>
+                </mat-form-field>
+
+                <!-- URL da imagem -->
+                <mat-form-field appearance="fill">
+                    <mat-label>Imagem de Capa (URL)</mat-label>
+                    <input matInput formControlName="img" placeholder="Cole o link da imagem" type="url">
+                </mat-form-field>
+
+                <!-- Conteúdo -->
+                <mat-form-field appearance="fill">
+                    <mat-label>Conteúdo</mat-label>
+                    <textarea matInput rows="5" formControlName="content" placeholder="Escreva o conteúdo do post" required></textarea>
+                </mat-form-field>
+
+                <!-- Etiquetas (Tags) -->
+                <mat-form-field appearance="fill">
+                    <mat-chip-grid #chipGrid aria-label="Campo de etiquetas">
+                    
+                            <mat-chip-row *ngFor="let tag of tags; let i = index" (removed)="remove(tag)">
+                                {{ tag }}
+                                <button matChipRemove aria-label="Remover etiqueta">
+                                    <mat-icon>cancel</mat-icon>
+                                </button>
+                            </mat-chip-row>
+
+                        <input
+                            placeholder="Nova etiqueta..."
+                            [matChipInputFor]="chipGrid"
+                            (matChipInputTokenEnd)="add($event)">
+                    </mat-chip-grid>
+                </mat-form-field>
+
+                <!-- Botão de envio -->
+                <button
+                    mat-raised-button
+                    color="primary"
+                    style="float: right;"
+                    [disabled]="!postForm.valid"
+                    (click)="createPost()"
+                    aria-label="Publicar novo post">
+                    Publicar
+                </button>
+            </form>
+
+        </div>
+    </mat-card-content>
+</mat-card>
