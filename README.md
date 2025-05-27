@@ -44,7 +44,7 @@ Este repositório contém o **frontend** da aplicação BlogWeb, implementado em
    ng serve
    ```
 
-   O app ficará disponível em `http://localhost:4200`.
+   O app ficará disponível em `http://localhost:4200`
 
 ---
 
