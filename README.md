@@ -1,27 +1,108 @@
-# BlogWeb
+# BlogWeb Frontend
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.16.
+Este repositório contém o **frontend** da aplicação BlogWeb, implementado em Angular com Material Design, gráficos interativos e autenticação via JWT.
 
-## Development server
+---
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## 📋 Pré-requisitos
 
-## Code scaffolding
+* Node.js (14.x ou superior)
+* npm (6.x ou superior)
+* Navegador moderno (Chrome, Firefox, Edge)
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+---
 
-## Build
+## 🚀 Tecnologias
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+* Angular
+* Angular Material
+* Chart.js
+* ng2-charts
+* RxJS
+* TypeScript
 
-## Running unit tests
+---
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## 📦 Instalação e Execução
 
-## Running end-to-end tests
+1. Clone o repositório:
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+   ```bash
+   git clone https://github.com/igorsantos2102/blog-web-frontend.git
+   cd blog-web-frontend
+   ```
 
-## Further help
+2. Instale as dependências:
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+   ```bash
+   npm install
+   ```
+
+3. Inicie o servidor de desenvolvimento:
+
+   ```bash
+   ng serve
+   ```
+
+   O app ficará disponível em `http://localhost:4200`.
+
+---
+
+## 🔧 Configuração
+
+No arquivo `src/environments/environment.ts`, ajuste a URL base da API para apontar ao seu backend:
+
+```ts
+export const environment = {
+  production: false,
+  apiUrl: 'http://localhost:8080'
+};
+```
+
+---
+
+## ✨ Funcionalidades Principais
+
+* **Cadastro/Login** com armazenamento de token no `localStorage`
+* **CRUD de postagens**: criar, listar, visualizar, editar e excluir
+* **Comentários**: publicar e listar comentários vinculados ao usuário autenticado
+* **Dashboard Analítico**: gráficos de distribuição de tags e contagem de posts
+* **Validações** inline em formulários de autenticação e criação de posts
+
+---
+
+## 🔗 Endpoints Consumidos
+
+| Método | Rota                     | Descrição                                   |
+| ------ | ------------------------ | ------------------------------------------- |
+| POST   | `/authenticate`          | Autentica usuário e recebe token JWT        |
+| POST   | `/sign-up`               | Cadastra novo usuário                       |
+| POST   | `/api/posts`             | Cria uma nova postagem                      |
+| GET    | `/api/posts`             | Lista todas as postagens                    |
+| GET    | `/api/posts/{id}`        | Detalha uma postagem                        |
+| PUT    | `/api/posts/{id}`        | Atualiza uma postagem (autor autenticado)   |
+| DELETE | `/api/posts/{id}`        | Exclui uma postagem (autor autenticado)     |
+| POST   | `/api/comments/create`   | Publica comentário em uma postagem          |
+| GET    | `/api/comments/{postId}` | Lista comentários de uma postagem           |
+| GET    | `/api/posts/tag-stats`   | Obtém estatísticas de tags para o dashboard |
+
+> Em todas as chamadas acima, envie o header:
+>
+> ```
+> Authorization: Bearer <seu_token_jwt>
+> ```
+
+---
+
+## 📄 Próximos Passos
+
+* Implementar CRUD de usuários e gerenciamento de perfis
+* Adicionar testes unitários e end-to-end
+* Configurar integração contínua e deploy (GitHub Actions)
+* Otimizar performance e acessibilidade
+
+---
+
+## 📫 Contato
+
+* LinkedIn: [igor-santos](https://www.linkedin.com/in/0-igor-santos)
